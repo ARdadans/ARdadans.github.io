@@ -1,0 +1,66 @@
+<html ng-app="ionicApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+    <title>Slides Autofocus</title>
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+<script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+    <!-- <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
+    <script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script> -->
+  </head>
+
+  <body>
+    <div class="ion-page">
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>App</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <ion-button id="open-modal" expand="block">Open</ion-button>
+      
+          <ion-modal trigger="open-modal">
+            <ion-header>
+              <ion-toolbar>
+                <ion-title>Modal</ion-title>
+                <ion-buttons slot="end">
+                  <ion-button onclick="dismiss()">Close</ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-header>
+            <ion-content>
+              <p class="ion-padding-horizontal">You must accept the terms and conditions to close this modal.</p>
+              <ion-item>
+                <ion-label class="ion-text-wrap" for="terms">Do you accept the terms and conditions?</ion-label>
+                <ion-checkbox id="terms"></ion-checkbox>
+              </ion-item>
+            </ion-content>
+          </ion-modal>
+        </ion-content>
+      </div>
+      
+      <script>
+        var modal = document.querySelector('ion-modal');
+      
+        modal.canDismiss = false;
+        modal.presentingElement = document.querySelector('.ion-page');
+      
+        function dismiss() {
+          modal.dismiss();
+        }
+      
+        modal.addEventListener('didPresent', () => {
+          var terms = document.getElementById('terms');
+          terms.addEventListener('ionChange', (ev) => {
+            modal.canDismiss = ev.detail.checked;
+          });
+        });
+      </script>
+  </body>
+  
+
+</html>
